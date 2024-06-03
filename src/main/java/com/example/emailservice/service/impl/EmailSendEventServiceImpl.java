@@ -19,13 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class EmailSendEventServiceImpl implements EmailSendEventService {
 
-    private static final String EMAIL_SEND_TOPIC = "${spring.kafka.template.default-topic}";
-    private static final String CONSUMER_GROUP_ID = "${email-send}";
-    private static final String SUBJECT = "Email address confirmation";
-    private static final String TEXT_MESSAGE = "To confirm your email, please follow the link: ";
-    //change to actual link
-    private static final String LINK = "http://localhost:8080/account/confirm-email?token=";
-
     private final EmailSendEventRepository eventRepository;
     private final EmailSendEventMapper eventMapper;
     private final JavaMailSender mailSender;

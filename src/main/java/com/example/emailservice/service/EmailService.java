@@ -1,8 +1,6 @@
 package com.example.emailservice.service;
 
-import org.springframework.mail.SimpleMailMessage;
-
 public interface EmailService {
 
-    void confirmEmail(String token);
+    void sendEmail(String email, String uuid);
 }
