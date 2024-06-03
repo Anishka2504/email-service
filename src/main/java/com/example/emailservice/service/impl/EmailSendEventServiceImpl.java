@@ -6,10 +6,10 @@ import com.example.emailservice.mapper.EmailSendEventMapper;
 import com.example.emailservice.repository.EmailSendEventRepository;
 import com.example.emailservice.service.EmailSendEventService;
 import com.example.emailservice.service.EmailService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.mail.MailException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +35,7 @@ public class EmailSendEventServiceImpl implements EmailSendEventService {
                 log.info(String.format("Event %d is successfully saved in database", savedEvent.getId()));
             }
             return savedEvent;
-        } catch (MailException exception) {
+        } catch (MessagingException exception) {
             log.error(String.format("Error! Activation message is not sent to email %s", kafkaMessage.getUserEmail()));
             return null;
         }
